@@ -1,0 +1,37 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.gusterwoei.migrationdemo"
+    },
+    "jhipsterVersion": "6.7.0",
+    "applicationType": "microservice",
+    "baseName": "migrationdemo",
+    "packageName": "com.gusterwoei.migrationdemo",
+    "packageFolder": "com/gusterwoei/migrationdemo",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "no",
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "mysql",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "YWE2ZjEyYTZiZDg0ZmNiOWM1NzE4ODNhMTcyMmJiNzMzYjVlODhhOGEwMWMwZTA3NzZmOTYzNGI0ZDY4YjY4NDhiNDE0NTVhZDYzMGY3NGJkYzc1ZjNiZTNhYjk2ZmE0MDI5NzI4YzBmNmJkMDc1ZWRjZTlkZGE1M2U2MWIyYjM=",
+    "embeddableLaunchScript": false,
+    "creationTimestamp": 1591694566087,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false,
+    "clientPackageManager": "npm",
+    "blueprints": [],
+    "skipClient": true,
+    "skipUserManagement": true
+  }
+}
