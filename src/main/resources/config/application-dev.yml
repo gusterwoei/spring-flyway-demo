@@ -32,6 +32,9 @@ spring:
       additional-exclude: static/**
     livereload:
       enabled: false # we use Webpack dev server + BrowserSync for livereload
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
   jackson:
     serialization:
       indent-output: true
@@ -50,6 +53,8 @@ spring:
         useServerPrepStmts: true
   jpa:
     show-sql: true
+    hibernate:
+      ddl-auto: none
     properties:
       hibernate.id.new_generator_mappings: true
       hibernate.connection.provider_disables_autocommit: true
@@ -58,6 +63,7 @@ spring:
       hibernate.generate_statistics: false
   liquibase:
     # Remove 'faker' if you do not want the sample data to be loaded automatically
+    enabled: false
     contexts: dev, faker
   mail:
     host: localhost
