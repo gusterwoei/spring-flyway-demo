@@ -56,8 +56,6 @@ public class MigrationdemoApp {
             log.error("You have misconfigured your application! It should not " +
                     "run with both the 'dev' and 'cloud' profiles at the same time.");
         }
-
-        System.out.println("APP STARTED");
     }
 
     /**

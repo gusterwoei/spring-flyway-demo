@@ -1,16 +1,15 @@
 package com.gusterwoei.migrationdemo;
 
+import com.github.javafaker.Faker;
 import com.gusterwoei.migrationdemo.domain.User;
 import com.gusterwoei.migrationdemo.repository.UserRepository;
 import org.flywaydb.core.api.MigrationInfo;
 import org.flywaydb.core.api.callback.Callback;
 import org.flywaydb.core.api.callback.Context;
 import org.flywaydb.core.api.callback.Event;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
-
-import java.util.Random;
+import java.util.List;
 
 /**
  * @author Guster
@@ -39,19 +38,35 @@ public class MyFlywayCallback implements Callback {
     @Override
     public void handle(Event event, Context context) {
         switch (event) {
+            case BEFORE_EACH_MIGRATE:
+                // Some logic before the migration begins...
+                break;
             case AFTER_EACH_MIGRATE: {
                 MigrationInfo migration = context.getMigrationInfo();
                 String version = migration.getVersion().getVersion();
+                Faker faker = new Faker();
 
                 switch (version) {
-                    case "2.0.2": {
-                        System.out.println("Executing migration callback for version: " + version);
-                        User user = new User();
-                        user.setUsername("lorem-" + (new Random()).nextInt(100));
-                        user.setPassword("password");
-                        user.setEmail("lorem@ipsum.com");
-                        user.setPhone("0161234567");
-                        userRepository.save(user);
+                    case "1.0.0": {
+                        // loading some dummy data for the first version
+                        for (int i = 0; i < 10; i++) {
+                            User user = new User(faker.name().username(), faker.internet().password(), faker.internet().emailAddress());
+                            userRepository.save(user);
+                        }
+                        break;
+                    }
+                    case "1.0.1": {
+                        // add role to existing users if possible
+                        List<User> users = userRepository.findAll();
+                        users.forEach(user -> {
+                            user.setRole(User.ROLE_USER);
+                            userRepository.save(user);
+                        });
+
+                        // Also, let's add create a new user with role 'ROLE_ADMIN'
+                        User admin = new User(faker.name().username(), faker.internet().password(), faker.internet().emailAddress());
+                        admin.setRole(User.ROLE_ADMIN);
+                        userRepository.save(admin);
                         break;
                     }
                 }

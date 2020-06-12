@@ -1,9 +1,6 @@
 package com.gusterwoei.migrationdemo.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * @author Guster
@@ -13,6 +10,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "users")
 public class User {
+    public static final String ROLE_USER = "ROLE_USER";
+    public static final String ROLE_ADMIN = "ROLE_ADMIN";
+
     @Id
     long id;
     @Column
@@ -22,9 +22,15 @@ public class User {
     @Column
     String email;
     @Column
-    String avatar;
-    @Column
-    String phone;
+    String role;
+
+    public User() {}
+
+    public User(String username, String password, String email) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+    }
 
     public long getId() {
         return id;
@@ -58,20 +64,12 @@ public class User {
         this.email = email;
     }
 
-    public String getAvatar() {
-        return avatar;
+    public String getRole() {
+        return role;
     }
 
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setRole(String role) {
+        this.role = role;
     }
 
 }

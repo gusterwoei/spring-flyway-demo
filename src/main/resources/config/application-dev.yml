@@ -34,7 +34,7 @@ spring:
       enabled: false # we use Webpack dev server + BrowserSync for livereload
   flyway:
     enabled: true
-    baseline-on-migrate: true
+    baseline-on-migrate: false
   jackson:
     serialization:
       indent-output: true
