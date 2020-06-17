@@ -32,9 +32,6 @@ spring:
       additional-exclude: static/**
     livereload:
       enabled: false # we use Webpack dev server + BrowserSync for livereload
-  flyway:
-    enabled: true
-    baseline-on-migrate: false
   jackson:
     serialization:
       indent-output: true
@@ -51,6 +48,12 @@ spring:
         prepStmtCacheSize: 250
         prepStmtCacheSqlLimit: 2048
         useServerPrepStmts: true
+  flyway:
+    enabled: true
+    baseline-on-migrate: false
+    locations:
+      - classpath:db/migration
+      - classpath:db/callback
   jpa:
     show-sql: true
     hibernate:

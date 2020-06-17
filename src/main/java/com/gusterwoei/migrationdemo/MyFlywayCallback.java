@@ -46,6 +46,8 @@ public class MyFlywayCallback implements Callback {
                 String version = migration.getVersion().getVersion();
                 Faker faker = new Faker();
 
+                System.out.println("> Running Migration Version [" + version + "]");
+
                 switch (version) {
                     case "1.0.0": {
                         // loading some dummy data for the first version
